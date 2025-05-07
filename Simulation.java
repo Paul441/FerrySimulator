@@ -1,0 +1,43 @@
+
+package com.example.ferry;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Simulation {
+
+    private final Config cfg;
+    private final Dock dock;
+    private final SimulationUI ui;
+    private final List<Thread> workers = new ArrayList<>();
+
+    public Simulation(Config cfg) {
+        this.cfg  = cfg;
+        this.dock = new Dock(cfg.dockCapacity);
+        this.ui   = new SimulationUI(cfg.ferries);   // UI bez logiki pauzy
+    }
+
+    public void stop() {
+        workers.forEach(Thread::interrupt);
+        ui.log(-1, "Simulation stopped.");
+    }
+
+    public void start() {
+
+        /* generator aut */
+        Thread carGen = new Thread(
+                new CarGenerator(dock, cfg.carArrivalIntervalMs, ui),
+                "CarGenerator");
+        workers.add(carGen);
+        carGen.start();
+
+        /* promy */
+        cfg.ferries.forEach(fs -> {
+            Ferry f = new Ferry(fs.id, fs.capacity, fs.maxWaitSeconds,
+                    dock, ui);
+            Thread t = new Thread(f, "Ferry-" + fs.id);
+            workers.add(t);
+            t.start();
+        });
+    }
+}
