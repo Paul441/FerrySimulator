@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-/** Jeden prom = jeden wątek. */
+// Jeden prom, to jeden wątek
 public class Ferry implements Runnable {
 
     private final int id;
@@ -44,18 +44,17 @@ public class Ferry implements Runnable {
         }
     }
 
-    /* ──────────────────────────────────────── */
     private void doCycle() throws InterruptedException {
 
-        /* losowy czas podejścia 2-12 s */
+        // losowy czas podejścia 2-12 s
         Thread.sleep(ThreadLocalRandom.current().nextLong(2_000, 12_000));
 
-        /* zajmujemy rampę */
+        
         ui.ferryWaiting(id);
         dock.requestRamp(this);
         ui.ferryDocked(id);
 
-        /* rozładunek: losowa liczba aut (1…capacity) */
+        //rozładunek aut
         int arriving = ThreadLocalRandom.current().nextInt(1, capacity + 1);
         ui.log(id, "Arrived with " + arriving + "/" + capacity + " cars");
         ui.updateFerryLoad(id, arriving, capacity);
@@ -64,10 +63,10 @@ public class Ferry implements Runnable {
             ui.addExitingCars(1, ui.dockEntryX());
             ui.updateFerryLoad(id, arriving - i - 1, capacity);
             ui.log(id, "Vehicle " + (i + 1) + " left ferry");
-            Thread.sleep(300);                     // widoczny odstęp między autami
+            Thread.sleep(300);                     
         }
 
-        /* załadunek zielonych FIFO */
+        //załadunek aut
         onBoard.clear();
         Instant startLoad = Instant.now();
         Instant deadline  = startLoad.plus(maxWait);
@@ -85,8 +84,8 @@ public class Ferry implements Runnable {
             if (onBoard.isEmpty()) deadline = Instant.now().plus(maxWait);
         }
 
-        /* dodatkowe 3 s postoju */
-        Thread.sleep(3_000);
+       
+        Thread.sleep(500);
 
         dock.releaseRamp();
         ui.ferryLeft(id);
