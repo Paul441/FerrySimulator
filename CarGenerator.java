@@ -10,7 +10,7 @@ public class CarGenerator implements Runnable {
     private final int avgIntervalMs;
     private final SimulationUI ui;
 
-    private final AtomicLong seq = new AtomicLong();   // prosta numeracja 1,2,3…
+    private final AtomicLong seq = new AtomicLong();  
 
     public CarGenerator(Dock dock, int avgIntervalMs, SimulationUI ui) {
         this.dock = dock;
