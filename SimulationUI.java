@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 public class SimulationUI extends JFrame {
 
-    /* ─── modele ─── */
+    
     private static class FerryState {
         volatile boolean atDock = false;
         volatile boolean waiting = false;
@@ -21,7 +21,7 @@ public class SimulationUI extends JFrame {
         ExitingCar(int x){ this.x = x; }
     }
 
-    /* ─── pola ─── */
+    
     private final Map<Integer,FerryState> ferries = new ConcurrentHashMap<>();
     private final java.util.List<Car> queue = new ArrayList<>();
     private final java.util.List<ExitingCar> exiting = new ArrayList<>();
@@ -46,7 +46,7 @@ public class SimulationUI extends JFrame {
         add(canvas, BorderLayout.CENTER);
         add(new JScrollPane(logArea), BorderLayout.SOUTH);
 
-        /* panel (MENU / EXIT) – przycisk PAUSE usunięty */
+        
         JPanel buttons = new JPanel();
         buttons.setLayout(new BoxLayout(buttons, BoxLayout.Y_AXIS));
         JButton menu = new JButton("MENU");
@@ -84,7 +84,7 @@ public class SimulationUI extends JFrame {
         setVisible(true);
     }
 
-    /* --- metody API --- */
+
     private void later(Runnable r){ if(SwingUtilities.isEventDispatchThread()) r.run(); else SwingUtilities.invokeLater(r);}
     public void updateFerryLoad(int id,int load,int cap){ later(()->{var s=ferries.get(id);if(s!=null){s.load=load;canvas.repaint();}});}
     public void ferryWaiting(int id){ later(()->{var s=ferries.get(id);if(s!=null){s.waiting=true;s.waitingSince=System.currentTimeMillis();canvas.repaint();}});}
@@ -99,7 +99,7 @@ public class SimulationUI extends JFrame {
     public int dockEntryX(){ return getWidth()/3 + 10; }
     public void log(int fid,String msg){ later(()->{String tag=fid>=0?"[F"+fid+"] ":"[SYS] ";logArea.append(tag+msg+System.lineSeparator());logArea.setCaretPosition(logArea.getDocument().getLength());});}
 
-    /* --- rysowanie --- */
+    
     private class DrawPanel extends JPanel{
         @Override protected void paintComponent(Graphics g){
             super.paintComponent(g);
@@ -123,25 +123,25 @@ public class SimulationUI extends JFrame {
                 }
             }
 
-            /* pomarańczowe kropki */
+            
             synchronized(exiting){
                 g2.setColor(new Color(0xffa500));
                 exiting.forEach(ec -> g2.fillOval(ec.x-6,roadY-6,12,12));
             }
 
-            /* prędkość auta */
+            
             g2.setColor(Color.BLACK);
             g2.drawString("Nadjeżdża: "+incomingSpeed+" km/h", w-190, roadY-25);
 
-            /* przystań */
+            
             int dockX=w/3, dockY=(int)(h*0.45), dockW=160, dockH=14;
             g2.setColor(new Color(0x9b6a3b)); g2.fillRect(dockX,dockY,dockW,dockH);
             g2.setColor(Color.BLACK); g2.drawString("Przystań", dockX+dockW/2-25, dockY+dockH+12);
 
-            /* prom przy pomoście */
+            
             ferries.forEach((id,s)->{ if(s.atDock) drawFerry(g2,id,s,dockX+10,dockY-40); });
 
-            /* kolejka promów */
+            
             var waiting=ferries.entrySet().stream()
                     .filter(e->e.getValue().waiting)
                     .sorted(Comparator.comparingLong(e->e.getValue().waitingSince))
@@ -153,7 +153,7 @@ public class SimulationUI extends JFrame {
             }
         }
 
-        /* helpers */
+       
         private void drawFerry(Graphics2D g2,int id,FerryState s,int x,int y){
             g2.setColor(Color.WHITE); g2.fillRect(x,y,120,30);
             g2.setColor(Color.BLUE.darker()); g2.drawRect(x,y,120,30);
