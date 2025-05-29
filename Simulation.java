@@ -24,14 +24,14 @@ public class Simulation {
 
     public void start() {
 
-        /* generator aut */
+        
         Thread carGen = new Thread(
                 new CarGenerator(dock, cfg.carArrivalIntervalMs, ui),
                 "CarGenerator");
         workers.add(carGen);
         carGen.start();
 
-        /* promy */
+       
         cfg.ferries.forEach(fs -> {
             Ferry f = new Ferry(fs.id, fs.capacity, fs.maxWaitSeconds,
                     dock, ui);
