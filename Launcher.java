@@ -5,12 +5,12 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Ekran startowy:
- *   • tytuł „PROMY NA RZECE”
- *   • wybór liczby promów (1-10)
- *   • osobny spinner pojemności dla każdego promu
- *   • przycisk PLAY → start symulacji
+/*
+  Ekran startowy:
+ • tytuł „PROMY NA RZECE”
+ • wybór liczby promów (1-10)
+ • osobny spinner pojemności dla każdego promu
+ • przycisk PLAY → start symulacji
  */
 public class Launcher extends JFrame {
 
@@ -22,19 +22,19 @@ public class Launcher extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setLayout(new BorderLayout(20, 20));
 
-        /* -------- nagłówek -------- */
+       
         JLabel title = new JLabel("PROMY NA RZECE", SwingConstants.CENTER);
         title.setFont(new Font("SansSerif", Font.BOLD, 32));
         add(title, BorderLayout.NORTH);
 
-        /* -------- górny panel: liczba promów -------- */
+        
         JPanel top = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         top.add(new JLabel("Liczba promów:"));
         JSpinner spCount = new JSpinner(new SpinnerNumberModel(3, 1, 10, 1));
         top.add(spCount);
         add(top, BorderLayout.CENTER);
 
-        /* -------- panel pojemności (dynamiczny) -------- */
+        
         add(capacityPanel, BorderLayout.WEST);
         rebuildCapacitySpinners((Integer) spCount.getValue());
 
@@ -42,7 +42,7 @@ public class Launcher extends JFrame {
                 rebuildCapacitySpinners((Integer) spCount.getValue())
         );
 
-        /* -------- przycisk PLAY -------- */
+        
         JButton play = new JButton("PLAY");
         add(play, BorderLayout.SOUTH);
         play.addActionListener(e -> startSimulation((Integer) spCount.getValue()));
@@ -52,7 +52,7 @@ public class Launcher extends JFrame {
         setVisible(true);
     }
 
-    /** przebudowuje panel z spinnerami pojemności */
+    
     private void rebuildCapacitySpinners(int count) {
         capacityPanel.removeAll();
         capSpinners.clear();
@@ -66,24 +66,24 @@ public class Launcher extends JFrame {
         }
         capacityPanel.revalidate();
         capacityPanel.repaint();
-        pack();  // dopasuj okno do nowej wysokości
+        pack();  
     }
 
-    /** tworzy Config ze spin­nerów i uruchamia symulację */
+    
     private void startSimulation(int nFerries) {
-        Config cfg = ConfigLoader.load();               // reszta parametrów z YAML
+        Config cfg = ConfigLoader.load();               
 
         List<Config.FerrySpec> list = new ArrayList<>();
         for (int i = 0; i < nFerries; i++) {
             Config.FerrySpec fs = new Config.FerrySpec();
             fs.id = i + 1;
             fs.capacity = (Integer) capSpinners.get(i).getValue();
-            fs.maxWaitSeconds = 20;                     // stała lub dodaj kolejny spinner
+            fs.maxWaitSeconds = 20;                     
             list.add(fs);
         }
         cfg.ferries = list;
 
         new Simulation(cfg).start();
-        dispose();                                      // zamknij okno startowe
+        dispose();                                      
     }
 }
