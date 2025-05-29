@@ -3,7 +3,7 @@ package com.example.ferry;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.concurrent.atomic.AtomicLong;
 
-/** Produkuje samochody w losowych odstępach. */
+
 public class CarGenerator implements Runnable {
 
     private final Dock dock;
