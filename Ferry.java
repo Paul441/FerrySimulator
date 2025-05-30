@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-// Jeden prom, to jeden wątek
+
 public class Ferry implements Runnable {
 
     private final int id;
@@ -35,7 +35,7 @@ public class Ferry implements Runnable {
     @Override public void run() {
         try {
             /* losowy pierwszy start 0-10 s */
-            Thread.sleep(ThreadLocalRandom.current().nextLong(0, 10_000));
+            Thread.sleep(ThreadLocalRandom.current().nextLong(0, 8_000));
             while (!Thread.currentThread().isInterrupted()) {
                 doCycle();
             }
@@ -46,8 +46,8 @@ public class Ferry implements Runnable {
 
     private void doCycle() throws InterruptedException {
 
-        // losowy czas podejścia 2-12 s
-        Thread.sleep(ThreadLocalRandom.current().nextLong(2_000, 12_000));
+        
+        Thread.sleep(ThreadLocalRandom.current().nextLong(2_000, 10_000));
 
         
         ui.ferryWaiting(id);
@@ -77,7 +77,7 @@ public class Ferry implements Runnable {
                 onBoard.add(c);
                 ui.carEmbarked(c);
                 ui.updateFerryLoad(id, onBoard.size(), capacity);
-                Thread.sleep(300);                 // odstęp między wjazdami
+                Thread.sleep(300);                 
             } else {
                 Thread.sleep(100);
             }
