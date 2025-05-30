@@ -158,7 +158,7 @@ public class SimulationUI extends JFrame {
             g2.setColor(Color.WHITE); g2.fillRect(x,y,120,30);
             g2.setColor(Color.BLUE.darker()); g2.drawRect(x,y,120,30);
             g2.setFont(g2.getFont().deriveFont(11f));
-            g2.drawString("Prom "+id,x+5,y+12);
+            g2.drawString("Ferry "+id,x+5,y+12);
             g2.drawString(s.load+"/"+s.capacity,x+5,y+24);
         }
         private void drawFerryWaiting(Graphics2D g2,int id,FerryState s,int x,int y,int pos){
@@ -169,7 +169,7 @@ public class SimulationUI extends JFrame {
             g2.drawRect(x,y,120,30); g2.setStroke(old);
             long w=(System.currentTimeMillis()-s.waitingSince)/1000;
             g2.drawString("kolejka #"+pos, x+5, y+10);
-            g2.drawString("Prom "+id+" ("+w+"s)", x+5, y+24);
+            g2.drawString("Ferry "+id+" ("+w+"s)", x+5, y+24);
         }
     }
 }
