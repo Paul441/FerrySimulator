@@ -10,7 +10,7 @@ public class Launcher extends JFrame {
 
     
     private static RoundedPanel wrap(Component c) {
-        // biały panel  z promieniem 12 px
+        
         RoundedPanel p = new RoundedPanel(12, new Color(0xf5f5f5));
         p.setLayout(new BorderLayout());
         p.add(c, BorderLayout.CENTER);
