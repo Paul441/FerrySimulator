@@ -23,7 +23,7 @@ public class CarGenerator implements Runnable {
         try {
             while (!Thread.currentThread().isInterrupted()) {
 
-                int speed = rnd.nextInt(40, 91);             // km/h
+                int speed = rnd.nextInt(0, 100);             
                 ui.updateIncomingSpeed(speed);
 
                 long wait = Math.max(80,
