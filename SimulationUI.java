@@ -69,7 +69,7 @@ public class SimulationUI extends JFrame {
             SwingUtilities.invokeLater(Launcher::new);
         });
 
-        /* animacja pomarańczowych kropek */
+        
         animTimer = new javax.swing.Timer(40, e -> {
             synchronized(exiting){
                 exiting.removeIf(c -> c.x > getWidth());
@@ -106,11 +106,11 @@ public class SimulationUI extends JFrame {
             Graphics2D g2=(Graphics2D)g; int w=getWidth(),h=getHeight();
             int roadY=(int)(h*0.25);
 
-            /* tło + droga */
+            
             g2.setColor(new Color(0x90c8ff)); g2.fillRect(0,0,w,h);
             g2.setColor(Color.DARK_GRAY); g2.fillRect(0,roadY-6,w,12);
 
-            /* zielone kropki */
+            
             int sx=20, step=55;
             synchronized(queue){
                 for(int i=0;i<queue.size();i++){
