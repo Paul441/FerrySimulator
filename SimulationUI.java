@@ -131,7 +131,7 @@ public class SimulationUI extends JFrame {
 
             
             g2.setColor(Color.BLACK);
-            g2.drawString("Nadjeżdża: "+incomingSpeed+" km/h", w-190, roadY-25);
+            g2.drawString("Incoming car: "+incomingSpeed+" km/h", w-190, roadY-25);
 
             
             int dockX=w/3, dockY=(int)(h*0.45), dockW=160, dockH=14;
