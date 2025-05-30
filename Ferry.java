@@ -54,7 +54,7 @@ public class Ferry implements Runnable {
         dock.requestRamp(this);
         ui.ferryDocked(id);
 
-        //rozładunek aut
+        
         int arriving = ThreadLocalRandom.current().nextInt(1, capacity + 1);
         ui.log(id, "Arrived with " + arriving + "/" + capacity + " cars");
         ui.updateFerryLoad(id, arriving, capacity);
