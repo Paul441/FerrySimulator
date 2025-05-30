@@ -168,7 +168,7 @@ public class SimulationUI extends JFrame {
             g2.setStroke(new BasicStroke(1.5f,BasicStroke.CAP_BUTT,BasicStroke.JOIN_MITER,1f,dash,0f));
             g2.drawRect(x,y,120,30); g2.setStroke(old);
             long w=(System.currentTimeMillis()-s.waitingSince)/1000;
-            g2.drawString("Queue #"+pos, x+5, y+10);
+            g2.drawString("Queue "+pos, x+5, y+10);
             g2.drawString("Ferry "+id+" ("+w+"s)", x+5, y+24);
         }
     }
