@@ -66,7 +66,7 @@ public class Ferry implements Runnable {
             Thread.sleep(300);                     
         }
 
-        //załadunek aut
+        
         onBoard.clear();
         Instant startLoad = Instant.now();
         Instant deadline  = startLoad.plus(maxWait);
