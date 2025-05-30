@@ -3,7 +3,7 @@ package com.example.ferry;
 import java.util.Queue;
 import java.util.concurrent.*;
 
-// Wspólna przystań: kolejka aut + jedna rampa (semafor)
+
 public class Dock {
     private final BlockingQueue<Car> waitingCars;
     private final Semaphore ramp = new Semaphore(1, true);          
