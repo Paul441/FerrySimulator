@@ -14,7 +14,7 @@ public class Simulation {
     public Simulation(Config cfg) {
         this.cfg  = cfg;
         this.dock = new Dock(cfg.dockCapacity);
-        this.ui   = new SimulationUI(cfg.ferries);   // UI bez logiki pauzy
+        this.ui   = new SimulationUI(cfg.ferries);   
     }
 
     public void stop() {
