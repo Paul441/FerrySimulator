@@ -17,10 +17,7 @@ public class Simulation {
         this.ui   = new SimulationUI(cfg.ferries);   
     }
 
-    public void stop() {
-        workers.forEach(Thread::interrupt);
-        ui.log(-1, "Simulation stopped.");
-    }
+
 
     public void start() {
 
