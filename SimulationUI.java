@@ -136,7 +136,7 @@ public class SimulationUI extends JFrame {
             
             int dockX=w/3, dockY=(int)(h*0.45), dockW=160, dockH=14;
             g2.setColor(new Color(0x9b6a3b)); g2.fillRect(dockX,dockY,dockW,dockH);
-            g2.setColor(Color.BLACK); g2.drawString("Przystań", dockX+dockW/2-25, dockY+dockH+12);
+            g2.setColor(Color.BLACK); g2.drawString("Harbor", dockX+dockW/2-25, dockY+dockH+12);
 
             
             ferries.forEach((id,s)->{ if(s.atDock) drawFerry(g2,id,s,dockX+10,dockY-40); });
