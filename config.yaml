@@ -1,6 +1,5 @@
 dockCapacity: 40
-carArrivalIntervalMs: 600  # średni odstęp między autami (ms)
-simulationTimeSeconds: 120 # auto‑stop po 2 minutach
+carArrivalIntervalMs: 600  
 ferries:
   - id: 1
     capacity: 12
