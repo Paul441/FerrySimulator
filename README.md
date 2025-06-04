@@ -8,3 +8,6 @@ Program rozpoczynamy standardowo od pliku Main.java
 Przcisk EXIT powoduje wyświetlenie potwierdzenia i wyjście z programu
 Przycisk MENU powoduje przejście do menu i umożliwienie ponownego wprowadzenie parametrów
 Program jest w podstawowej szacie graficznej, spełniając logikę i założenia zadania
+Program rozpoczynamy w pliku Main
+Zdjęcie ze sposobu zainstalowania plików programu:
+![image](https://github.com/user-attachments/assets/aa88b0d9-ff7c-4d95-a767-0f736d71ba60)
