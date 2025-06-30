@@ -11,3 +11,4 @@ Program jest w podstawowej szacie graficznej, spełniając logikę i założenia
 Program rozpoczynamy w pliku Main
 Zdjęcie ze sposobu zainstalowania plików programu:
 ![image](https://github.com/user-attachments/assets/aa88b0d9-ff7c-4d95-a767-0f736d71ba60)
+Czasami tzreba przy pliku pom.xml nacinąć sync projekt, ewentualnie download.
